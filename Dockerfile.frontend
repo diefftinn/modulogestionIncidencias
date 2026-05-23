@@ -6,6 +6,9 @@ WORKDIR /app
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
+# COPIAR PATCHES
+COPY patches ./patches
+
 # Install dependencies
 RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
@@ -22,7 +25,7 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy built frontend from builder
-COPY --from=builder /app/dist/client /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Expose port
 EXPOSE 80

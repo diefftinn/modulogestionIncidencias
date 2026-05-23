@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # MySQL Database
   mysql:
-    image: mysql:8.0-alpine
+    image: mysql:8.0
     container_name: tickets_mysql
     environment:
       MYSQL_DATABASE: ${DB_NAME:-tickets_db}
@@ -11,7 +11,7 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD:-tickets_password}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root_password}
     ports:
-      - "${DB_PORT:-3306}:3306"
+          - "3301:3306"
     volumes:
       - mysql_data:/var/lib/mysql
     healthcheck:
